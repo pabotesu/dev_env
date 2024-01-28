@@ -1,3 +1,5 @@
+{ config, pkgs, ... }:
+
 let 
   myuser = "pobotesu";
   myhome = "/home/pabotesu";
