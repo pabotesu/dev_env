@@ -1,5 +1,5 @@
 {
-  description = " #---# NixOS Configuration for wsl #---#";
+  description = " #---# NixOS Configuration for WSL #---#";
   inputs = {
     ### nix ans nix-tools
     nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
@@ -15,24 +15,19 @@
   outputs = {
     nixpkgs,
     home-manager,
-    inputs,
     ...
-  }:let 
-      # system = "aarch64-linux"; If you are running on ARM powered computer
-      system = "x86_64-linux";
-      # myuser is your $username
-      myuser = builtins.getEnv "USER";
-      pkgs = import inputs.nixpkgs {
-          inherit system;
-      };
-    in {
-      homeConfigurations = {
-        "${myuser}" = home-manager.lib.homeManagerConfiguration {
-          inherit pkgs;
-          modules = [
-            ./home-manager/default.nix
-          ];
-        };
+  }: let
+  system = "x86_64-linux";
+  pkgs = nixpkgs.legacyPackages.${system};
+  username = "pabotesu"; 
+  in {
+    homeConfigurations = {
+      ${username} = home-manager.lib.homeManagerConfiguration {
+        inherit pkgs;
+        modules = [
+          ./home-manager/home.nix
+        ];
       };
     };
+  };
 }
