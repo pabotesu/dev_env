@@ -1,5 +1,6 @@
 {
   description = " #---# NixOS Configuration for WSL #---#";
+
   inputs = {
     ### nix ans nix-tools
     nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
@@ -17,9 +18,9 @@
     home-manager,
     ...
   }: let
-  system = "x86_64-linux";
-  pkgs = nixpkgs.legacyPackages.${system};
-  username = "pabotesu"; 
+    system = "x86_64-linux";
+    pkgs = nixpkgs.legacyPackages.${system};
+    username = "pabotesu"; 
   in {
     homeConfigurations = {
       ${username} = home-manager.lib.homeManagerConfiguration {
