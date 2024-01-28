@@ -12,19 +12,27 @@
     };
   };
 
-  outputs = inputs:
-    let 
+  outputs = {
+    nixpkgs,
+    home-manager,
+    inputs,
+    ...
+  }:let 
       # system = "aarch64-linux"; If you are running on ARM powered computer
-      syste = "x86_64-linux";
+      system = "x86_64-linux";
       # myuser is your $username
       myuser = builtins.getEnv "USER";
-      pkgs = nixpkgs.legacyPackages.${system};
+      pkgs = import inputs.nixpkgs {
+          inherit system;
+      };
     in {
       homeConfigurations = {
         "${myuser}" = home-manager.lib.homeManagerConfiguration {
-        inherit pkgs;
-        modules = [
-          ./home-manager/default.nix
+          inherit pkgs;
+          modules = [
+            ./home-manager/default.nix
+          ];
+        };
       };
     };
 }
