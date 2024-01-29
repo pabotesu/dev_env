@@ -1,8 +1,8 @@
-{ config, pkgs, ... }:
+{ config, pkgs, users, username, ... }:
 
 let 
-  myuser = "pobotesu";
-  myhome = "/home/pabotesu";
+  myuser = "pabotesu";
+  myhome = "/home/${myuser}";
 in {
   home.username = "${myuser}";
   home.homeDirectory = "${myhome}";
@@ -10,10 +10,16 @@ in {
   programs.home-manager.enable = true;
   nix = {
     package = pkgs.nix;
-    settings.experimental-features = [ "nix-command" "flakes" ];
+    settings = {
+      experimental-features = [ "nix-command" "flakes" ];
+      auto-optimise-store = true;
+      trusted-users = ["root" "${myuser}"];
+      accept-flake-config = true;
+    };
   };
   imports = [
     ./modules/shell
     ./modules/fonts
+    ./modules/tools
   ];
 }

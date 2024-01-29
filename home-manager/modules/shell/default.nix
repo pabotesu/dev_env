@@ -1,5 +1,15 @@
-{pkgs, ...}: {
-  imports = [./starship.nix];
+{pkgs, username, ...}: {
+  imports = [
+    ./starship.nix
+    ./tools.nix
+  ];
+  programs.bash = {
+    enable = true;
+    initExtra = 
+    ''
+    zsh ; exit
+    '';
+  };
   programs.zsh = {
     enable = true;
     autocd = true; # cdなしでファイルパスだけで移動
