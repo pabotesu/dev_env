@@ -10,6 +10,7 @@
     - setup wsl
     - setup Nix - [nix-installer](https://github.com/DeterminateSystems/nix-installer)
     - clone this repository
+
 - First Run
 ```
 nix run nixpkgs#home-manager -- switch -b backup --flake .#pabotesu

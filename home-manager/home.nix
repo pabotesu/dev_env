@@ -20,7 +20,6 @@ in {
   };
   imports = [
     ./modules/shell
-    ./modules/fonts
     ./modules/tools
   ];
 }
