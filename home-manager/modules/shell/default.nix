@@ -1,8 +1,5 @@
 {pkgs, username, ...}: {
-  imports = [
-    ./starship.nix
-    ./tools.nix
-  ];
+  imports = [./starship.nix];
   programs.bash = {
     enable = true;
     initExtra = 
