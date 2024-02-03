@@ -1,7 +1,9 @@
 {pkgs, ...}: {
   programs.git = {
     enable = true;
+    # Your git username
     userName = "pabotesu";
+    # Your git email
     userEmail = "pab0te2u@gmail.com";
     
     delta.enable = true;

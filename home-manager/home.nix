@@ -1,7 +1,8 @@
-{ config, pkgs, users, username, ... }:
+{ config, pkgs, users, ... }:
 
 let 
   myuser = "pabotesu";
+  # Your Username
   myhome = "/home/${myuser}";
 in {
   home.username = "${myuser}";
